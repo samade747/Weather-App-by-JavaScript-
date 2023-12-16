@@ -129,6 +129,8 @@ function renderCityButtons(){
 
 setTimeout(() => {
    getLocation();
+   updateLocalStorage(response.data.name, response.data);
+        renderCityButtons();
 }, 1000);
 
 
