@@ -132,4 +132,4 @@ setTimeout(() => {
    renderCityButtons();
 }, 1000);
 
-
+renderCityButtons();
