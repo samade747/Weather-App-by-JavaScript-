@@ -1,6 +1,8 @@
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showWeather, handleLocationError);
+        
+        
     } else {
         alert('Location not supported or denied.');
     }
@@ -37,6 +39,9 @@ function getWeatherByCoordinates(latitude, longitude) {
             // document.querySelector('#wind').innerHTML = 'wind ' + response.data.wind.speed + ' m/s';
             document.querySelector('#temp_max').innerHTML = 'Temp max ' + response.data.main.temp_max;
             document.querySelector('#temp_min').innerHTML = 'Temp low ' + response.data.main.temp_min;
+
+            updateLocalStorage(response.data.name, response.data);
+            renderCityButtons();
         })
         .catch((error) => {
             console.log(error);
@@ -48,6 +53,7 @@ function manualWeatherCheck() {
     const cityName = prompt("Enter city name for weather check:");
     if (cityName) {
         getWeatherByCityName(cityName);
+        
     } else {
         alert("City name cannot be empty.");
     }
@@ -57,6 +63,7 @@ function getWeatherByCity() {
     const cityName = document.getElementById('inp-city').value;
     if (cityName) {
         getWeatherByCityName(cityName);
+
     } else {
         alert('City name cannot be empty.');
     }
@@ -77,14 +84,51 @@ function getWeatherByCityName(cityName) {
         document.querySelector('#wind').innerHTML = 'Wind Speed: ' + windSpeedKMH + ' km/h';
         document.querySelector('#temp_max').innerHTML = 'Temp max ' + response.data.main.temp_max;
         document.querySelector('#temp_min').innerHTML = 'Temp low ' + response.data.main.temp_min;
+
+        updateLocalStorage(response.data.name, response.data);
+        renderCityButtons();
     })
     .catch((error)=>{
         console.log(error);
     });
 }
 
+
+function updateLocalStorage(city, data){
+    let weatherHistory = JSON.parse(localStorage.getItem('weatherHistory')) || {};
+    weatherHistory[city] = data; 
+    localStorage.setItem('weatherHistory', JSON.stringify(weatherHistory));
+
+}
+
+function createCityButton(city) {
+    const button = document.createElement('button');
+    button.textContent = city;
+    button.className = 'btn btn-outline-primary m-2';
+    button.addEventListener('click', function() {
+        getWeatherByCityName(city);
+    });
+    return button;
+}
+
+
+function renderCityButtons(){
+    const weatherHistory = JSON.parse(localStorage.getItem('weatherHistory'))
+    const buttonContainer = document.getElementById('cityButtons');
+    buttonContainer.innerHTML = '';  
+
+    for(const city in weatherHistory){
+        const button = createCityButton(city);
+        buttonContainer.appendChild(button);
+    }
+
+}
+
+
+
+
 setTimeout(() => {
-    getLocation()
-}, 2000);
+   getLocation();
+}, 1000);
 
 
