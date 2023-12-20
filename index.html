@@ -11,44 +11,38 @@
 <body>
     <div class="container" style="border:  1px solid red;">
         <div class="row shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-            <div class="col-12 d-flex justify-content-center align-item-center mt-2">
-                <h3 class="btn btn-outline-primary">Weather APP</h3>
-            </div>
 
-            <div class="col-12 mt-2 d-flex justify-content-center align-item-center m-2">
+        <!-- Weather city name display section  -->
+   
+   
+        <div class="col-12 d-flex justify-content-center align-item-center mt-2">                          
+                    <h3 onclick="searchpage()" class="btn btn-primary">+</h3>                                  
+                        <form onsubmit="getLocation(); return false;" class="col d-flex justify-content-center align-item-center ">
+                            <button type="submit" class="btn">Check Weather by Location</button>
+                       </form>                                                                      
+        </div>
+
+            <!-- <div class="col-12 mt-2 d-flex justify-content-center align-item-center m-2">
                 
-                <form onsubmit="getWeatherByCity(); return false;">
-                    <input type="text" id="inp-city" placeholder="Enter city name" class="btn btn-outline-primary" >
-                    <button type="submit" class="btn btn-outline-primary">Check Weather</button>
-                </form>
-            </div>
-
-            <div class="col-12 mt-2 d-flex justify-content-center align-item-center m-2">
                 
-                <form onsubmit="getLocation(); return false;">
-                    <button type="submit" class="btn btn-outline-primary">Check Weather by Location</button>
-                </form>
+            </div> -->
 
-                <div id="cityButtons">
-
-                    
-                </div>
+            
+            
 
 
-                
-            </div>
-
-            <div class="col-12 justify-content-center align-item-center mt-2 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-                <h1 id="country" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded "></h1>
-                <h1 id="city" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded "></h1>
-                <h1 id="temp" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded "></h1>
-                <h1 id="wind" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded "></h1>
-                <h1 id="humidity" class="bi bi-droplet-fill d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded"></h1>
-                <h1 id="temp_max" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded"></h1>
-                <h1 id="temp_min" class="d-flex justify-content-center align-item-center shadow-sm p-3 mb-5 bg-body-tertiary rounded"></h1>
+            <div class="col-12 justify-content-center align-item-center mt-2 ">
+                <h1 id="country" class="d-flex justify-content-center align-item-center "></h1>
+                <h1 id="city" class="d-flex justify-content-center align-item-center "></h1>
+                <h1 id="temp" class="d-flex justify-content-center align-item-center "></h1>
+                <h1 id="wind" class="d-flex justify-content-center align-item-center "></h1>
+                <h1 id="humidity" class="bi bi-droplet-fill d-flex justify-content-center align-item-center"></h1>
+                <h1 id="temp_max" class="d-flex justify-content-center align-item-center"></h1>
+                <h1 id="temp_min" class="d-flex justify-content-center align-item-center"></h1>
             </div>
 
 
+           
 
 
         </div>
@@ -59,30 +53,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html> 

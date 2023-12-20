@@ -30,9 +30,11 @@ function getWeatherByCoordinates(latitude, longitude) {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${Api_key}`)
         .then((response) => {
             console.log(response)
-            document.querySelector('#country').innerHTML = 'country ' + response.data.sys.country;
-            document.querySelector('#city').innerHTML = 'City ' + response.data.name;
-            document.querySelector('#temp').innerHTML = 'Temperature ' + response.data.main.temp;
+            let cName = document.querySelector('#country').innerHTML = response.data.sys.country;
+
+            // document.querySelector('#country').innerHTML = response.data.sys.country;
+            document.querySelector('#city').innerHTML =  response.data.name;
+            document.querySelector('#temp').innerHTML = response.data.main.temp;
             document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
             let windSpeedKMH = (response.data.wind.speed * 3.6).toFixed(2); 
             document.querySelector('#wind').innerHTML = 'Wind Speed ' + windSpeedKMH + ' km/h';
@@ -76,9 +78,12 @@ function getWeatherByCityName(cityName) {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${Api_key}`)
     .then((response)=>{
         console.log(response)
-        document.querySelector('#country').innerHTML = 'country ' + response.data.sys.country;
-        document.querySelector('#city').innerHTML = 'City ' + response.data.name;
-        document.querySelector('#temp').innerHTML = 'Temperature ' + response.data.main.temp;
+        let cName = document.querySelector('#country').innerHTML 
+        cName.innertext = response.data.sys.country;
+
+
+        document.querySelector('#city').innerHTML =  response.data.name;
+        document.querySelector('#temp').innerHTML =  response.data.main.temp;
         document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
         let windSpeedKMH = (response.data.wind.speed * 3.6).toFixed(2);
         document.querySelector('#wind').innerHTML = 'Wind Speed: ' + windSpeedKMH + ' km/h';
@@ -104,7 +109,7 @@ function updateLocalStorage(city, data){
 function createCityButton(city) {
     const button = document.createElement('button');
     button.textContent = city;
-    button.className = 'btn btn-outline-primary m-2';
+    button.className = 'btn btn-outline-primary mt-5 col-12';
     button.addEventListener('click', function() {
         getWeatherByCityName(city);
     });
@@ -133,3 +138,9 @@ setTimeout(() => {
 }, 1000);
 
 renderCityButtons();
+
+
+function searchpage(){
+    window.location.href = 'search.html';
+
+}
