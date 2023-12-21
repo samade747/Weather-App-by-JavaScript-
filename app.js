@@ -1,6 +1,6 @@
 function getLocation() {
     if (navigator.geolocation) {
-        console.log(navigator.geolocation)
+        
         navigator.geolocation.getCurrentPosition(showWeather, handleLocationError);
         
         
@@ -31,9 +31,9 @@ function getWeatherByCoordinates(latitude, longitude) {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${Api_key}`)
         .then((response) => {
             console.log(response)
-            let cName = document.querySelector('#country').innerHTML = response.data.sys.country;
+            
 
-            // document.querySelector('#country').innerHTML = response.data.sys.country;
+            document.querySelector('#country').innerHTML = response.data.sys.country;
             document.querySelector('#city').innerHTML =  response.data.name;
             document.querySelector('#temp').innerHTML = response.data.main.temp;
             document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
@@ -79,10 +79,9 @@ function getWeatherByCityName(cityName) {
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${Api_key}`)
     .then((response)=>{
         console.log(response)
-        let cName = document.querySelector('#country').innerHTML 
-        cName.innertext = response.data.sys.country;
+        
 
-
+        document.querySelector('#country').innerHTML = response.data.sys.country;
         document.querySelector('#city').innerHTML =  response.data.name;
         document.querySelector('#temp').innerHTML =  response.data.main.temp;
         document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
