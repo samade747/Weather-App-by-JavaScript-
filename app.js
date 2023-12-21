@@ -1,5 +1,6 @@
 function getLocation() {
     if (navigator.geolocation) {
+        console.log(navigator.geolocation)
         navigator.geolocation.getCurrentPosition(showWeather, handleLocationError);
         
         
