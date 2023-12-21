@@ -109,7 +109,7 @@ function updateLocalStorage(city, data){
 function createCityButton(city) {
     const button = document.createElement('button');
     button.textContent = city;
-    button.className = 'btn btn-outline-primary mt-5 col-12';
+    button.className = 'btn btn btn-warning mt-5 col-12';
     button.addEventListener('click', function() {
         getWeatherByCityName(city);
     });
