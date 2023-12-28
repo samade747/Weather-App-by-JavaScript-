@@ -65,7 +65,7 @@ function getWeatherByCity() {
     const cityName = document.getElementById('inp-city').value;
     if (cityName) {
         getWeatherByCityName(cityName);
-
+        
     } else {
         alert('City name cannot be empty.');
     }
