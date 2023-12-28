@@ -30,7 +30,7 @@ function getWeatherByCoordinates(latitude, longitude) {
 
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${Api_key}`)
         .then((response) => {
-            console.log(response)          
+                    
             document.querySelector('#country').innerHTML = response.data.sys.country;
             document.querySelector('#city').innerHTML =  response.data.name;
             document.querySelector('#temp').innerHTML = response.data.main.temp;
@@ -79,15 +79,26 @@ function getWeatherByCityName(cityName) {
     .then((response)=>{
         console.log(response)
         
-
         document.querySelector('#country').innerHTML = response.data.sys.country;
-        document.querySelector('#city').innerHTML =  response.data.name;
-        document.querySelector('#temp').innerHTML =  response.data.main.temp;
-        document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
-        let windSpeedKMH = (response.data.wind.speed * 3.6).toFixed(2);
-        document.querySelector('#wind').innerHTML = 'Wind Speed: ' + windSpeedKMH + ' km/h';
-        document.querySelector('#temp_max').innerHTML = 'Temp max ' + response.data.main.temp_max;
-        document.querySelector('#temp_min').innerHTML = 'Temp low ' + response.data.main.temp_min;
+           document.querySelector('#city').innerHTML =  response.data.name;
+            document.querySelector('#temp').innerHTML = response.data.main.temp;
+            document.querySelector('#weatherdesc').innerHTML = response.data.weather[0].description;
+            document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
+            let windSpeedKMH = (response.data.wind.speed * 3.6).toFixed(2); 
+            document.querySelector('#wind').innerHTML = 'Wind Speed ' + windSpeedKMH + ' km/h';
+            // document.querySelector('#wind').innerHTML = 'wind ' + response.data.wind.speed + ' m/s';
+            document.querySelector('#temp_max').innerHTML = 'Temp max ' + response.data.main.temp_max;
+            document.querySelector('#temp_min').innerHTML = 'Temp low ' + response.data.main.temp_min;
+
+
+        // document.querySelector('#country').innerHTML = response.data.sys.country;
+        // document.querySelector('#city').innerHTML =  response.data.name;
+        // document.querySelector('#temp').innerHTML =  response.data.main.temp;
+        // document.querySelector('#humidity').innerHTML = 'Humidity ' + response.data.main.humidity;
+        // let windSpeedKMH = (response.data.wind.speed * 3.6).toFixed(2);
+        // document.querySelector('#wind').innerHTML = 'Wind Speed: ' + windSpeedKMH + ' km/h';
+        // document.querySelector('#temp_max').innerHTML = 'Temp max ' + response.data.main.temp_max;
+        // document.querySelector('#temp_min').innerHTML = 'Temp low ' + response.data.main.temp_min;
 
         updateLocalStorage(response.data.name, response.data);
         renderCityButtons();
